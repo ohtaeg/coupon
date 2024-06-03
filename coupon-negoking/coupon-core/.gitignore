@@ -37,3 +37,4 @@ out/
 .vscode/
 /gradlew
 /gradle/
+/src/main/generated/
