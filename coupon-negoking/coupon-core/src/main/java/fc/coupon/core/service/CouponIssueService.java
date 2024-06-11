@@ -59,9 +59,21 @@ public class CouponIssueService {
         this.saveCouponIssue(couponId, userId);
     }
 
+    @Transactional
+    public void issueWithXLock(long couponId, long userId) {
+        Coupon coupon = this.findCouponWithLock(couponId);
+        coupon.issue();
+        this.saveCouponIssue(couponId, userId);
+    }
+
     @Transactional(readOnly = true)
     public Coupon findCoupon(long couponId) {
         return couponJpaRepository.findById(couponId).orElseThrow(() -> new CouponIssueException(ErrorCode.COUPON_NOT_EXIST, "쿠폰이 존재하지 않습니다. %s".formatted(couponId)));
+    }
+
+    @Transactional(readOnly = true)
+    public Coupon findCouponWithLock(long couponId) {
+        return couponJpaRepository.findByIdWithLock(couponId).orElseThrow(() -> new CouponIssueException(ErrorCode.COUPON_NOT_EXIST, "쿠폰이 존재하지 않습니다. %s".formatted(couponId)));
     }
 
     @Transactional
