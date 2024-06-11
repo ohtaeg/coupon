@@ -34,4 +34,4 @@ CREATE TABLE `coupon`.`coupon_issue`
 
 INSERT INTO coupon.coupon
 (date_updated, date_created, coupon_type, date_issue_end, date_issue_start, discount_amount, issued_quantity, min_available_amount, title, total_quantity)
-VALUES ('2024-04-04 21:33:15.000000', '2024-04-04 21:33:15.000000', 'FIRST_COME_FIRST_SERVED', '2024-04-03 21:35:24.000000', '2024-04-02 21:35:03.000000', 100000, 0, 110000, 'test', 10)
+VALUES ('2024-06-04 21:33:15.000000', '2024-06-04 21:33:15.000000', 'FIRST_COME_FIRST_SERVED', '2024-12-30 21:35:24.000000', '2024-04-02 21:35:03.000000', 100000, 0, 110000, 'test', 500)
