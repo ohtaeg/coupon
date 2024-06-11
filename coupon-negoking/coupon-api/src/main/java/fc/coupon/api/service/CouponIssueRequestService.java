@@ -13,8 +13,10 @@ public class CouponIssueRequestService {
     private final Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
     private final CouponIssueService couponIssueService;
 
-    public void issue(CouponIssueRequestDto requestDto) {
-        couponIssueService.issue(requestDto.couponId(), requestDto.userId());
+    public void issueV1(CouponIssueRequestDto requestDto) {
+        synchronized (this) {
+            couponIssueService.issue(requestDto.couponId(), requestDto.userId());
+        }
         log.info("쿠폰 발급 완료. couponId : %s, userId : %s".formatted(requestDto.couponId(), requestDto.userId()));
 
     }

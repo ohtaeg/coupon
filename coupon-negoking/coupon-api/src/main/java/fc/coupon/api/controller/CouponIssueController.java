@@ -15,7 +15,7 @@ public class CouponIssueController {
 
     @PostMapping("/v1/issue")
     public CouponIssueResponse issue(@RequestBody CouponIssueRequestDto body) {
-        this.couponIssueRequestService.issue(body);
+        this.couponIssueRequestService.issueV1(body);
         return new CouponIssueResponse(true, null);
     }
 }
