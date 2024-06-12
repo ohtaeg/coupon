@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 @RequiredArgsConstructor
 public class DistributeLockExecutor {
+    public  static final String LOCK_PREFIX = "lock_";
 
     private final RedissonClient redissonClient;
 
@@ -34,7 +35,7 @@ public class DistributeLockExecutor {
                 throw new IllegalStateException("[" + lockName+ "] lock 획득 실패");
             }
             runnable.run();
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
         } finally {

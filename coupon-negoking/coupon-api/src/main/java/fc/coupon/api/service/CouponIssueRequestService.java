@@ -8,12 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static fc.coupon.core.component.DistributeLockExecutor.LOCK_PREFIX;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class CouponIssueRequestService {
-    private static final String LOCK_PREFIX = "lock_";
-
     private final CouponIssueService couponIssueService;
     private final DistributeLockExecutor lockExecutor;
 
