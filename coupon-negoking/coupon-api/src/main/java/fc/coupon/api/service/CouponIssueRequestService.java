@@ -2,6 +2,7 @@ package fc.coupon.api.service;
 
 import fc.coupon.api.controller.dto.CouponIssueRequestDto;
 import fc.coupon.core.component.DistributeLockExecutor;
+import fc.coupon.core.service.AsyncCouponIssueService;
 import fc.coupon.core.service.CouponIssueService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,8 @@ public class CouponIssueRequestService {
 
     private final CouponIssueService couponIssueService;
     private final DistributeLockExecutor lockExecutor;
+
+    private final AsyncCouponIssueService asyncCouponIssueService;
 
     public void issueV1(CouponIssueRequestDto requestDto) {
         // this.issueV1WithSynchronized(requestDto);
@@ -49,5 +52,12 @@ public class CouponIssueRequestService {
      */
     public void issueV1WithXLock(CouponIssueRequestDto requestDto) {
         couponIssueService.issueWithXLock(requestDto.couponId(), requestDto.userId());
+    }
+
+    /**
+     * redis 기반 비동기 쿠폰 발급
+     */
+    public void asyncIssue(CouponIssueRequestDto requestDto) {
+        asyncCouponIssueService.issue(requestDto.couponId(), requestDto.userId());
     }
 }

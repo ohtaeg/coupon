@@ -18,4 +18,13 @@ public class CouponIssueController {
         this.couponIssueRequestService.issueV1(body);
         return new CouponIssueResponse(true, null);
     }
+
+    /**
+     * Redis 기반 비동기 쿠폰 발급
+     */
+    @PostMapping("/v1/issue-async")
+    public CouponIssueResponse asyncIssue(@RequestBody CouponIssueRequestDto body) {
+        this.couponIssueRequestService.asyncIssue(body);
+        return new CouponIssueResponse(true, null);
+    }
 }
