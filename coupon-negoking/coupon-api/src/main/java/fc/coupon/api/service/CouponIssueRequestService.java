@@ -41,7 +41,7 @@ public class CouponIssueRequestService {
      */
     public void issueV1WithRedisDistributeLock(CouponIssueRequestDto requestDto) {
         final String lockName = LOCK_PREFIX + requestDto.couponId();
-        lockExecutor.execute(lockName, 5_000, 5_000,
+        lockExecutor.execute(lockName, 5000, 5_000,
                 () -> couponIssueService.issue(requestDto.couponId(), requestDto.userId())
         );
     }
@@ -57,7 +57,8 @@ public class CouponIssueRequestService {
     /**
      * redis 기반 비동기 쿠폰 발급
      */
-    public void asyncIssue(CouponIssueRequestDto requestDto) {
+    public void AsyncIssue(CouponIssueRequestDto requestDto) {
+        System.out.println("코드레빗 테스트 PR");
         asyncCouponIssueService.issue(requestDto.couponId(), requestDto.userId());
     }
 }
